@@ -37,8 +37,10 @@ locals {
   tenant_id       = "00000000-0000-0000-0000-000000000000"
 }
 ```
+
 terragrunt/1-dev/us/site.hcl
 
+```
 locals {
   site_name                              = "US"
   location                               = "West US 2"
@@ -46,6 +48,8 @@ locals {
   deployment_storage_resource_group_name = "gsddeployment"
   deployment_storage_account_name        = "gsddeploymentstate"
 }
+```
+
 Code structure
 The code in this repo uses the following folder hierarchy:
 
@@ -80,7 +84,9 @@ Infrastructure deployment:
     -p (Optional) plan only, do not deploy
 Sample
 
+```
 bash ./scripts/deploy.sh -e 1-dev -s us -c resource-group
+```
 Make sure you have set required environment variables properly.
 
 Destroy
@@ -90,7 +96,9 @@ Infrastructure destroy:
     -c (Optional) component name (app, networking, resource-group, etc), omit this to deploy all components
 Sample
 
-bash ./scripts/destroy.sh -e 1-dev -s us -c resource-group
+```
+ ./scripts/destroy.sh -e 1-dev -s us -c resource-group
+```
 
 Make sure you have set required environment variables properly.
 
