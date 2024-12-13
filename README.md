@@ -47,6 +47,7 @@ locals {
 Code structure
 The code in this repo uses the following folder hierarchy:
 
+
 ├── environments
 │   ├── <environment>
 │   │   ├── env.hcl
