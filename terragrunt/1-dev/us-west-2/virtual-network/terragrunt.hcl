@@ -5,7 +5,7 @@ include {
 dependencies {
   paths = ["../resource-group"]
 }
-
+initial
 terraform {
   source = "${get_parent_terragrunt_dir()}/terraform-modules/virtual-network"
 }
