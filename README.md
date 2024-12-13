@@ -105,5 +105,5 @@ Make sure you have set required environment variables properly.
 -----
 
 # Deployment Architecture
-
+Please see details in clicking this link ---> https://github.com/gsd-gsd/gsd-gsd/issues/2
 ------
