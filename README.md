@@ -29,12 +29,14 @@ Fill in environment/site level variables in env.hcl and site.hcl respectively.
 Sample
 terragrunt/1-dev/env.hcl
 
+```
 locals {
   env_name        = "1-dev"
   subscription_id = "00000000-0000-0000-0000-000000000000"
   client_id       = "00000000-0000-0000-0000-000000000000"
   tenant_id       = "00000000-0000-0000-0000-000000000000"
 }
+```
 terragrunt/1-dev/us/site.hcl
 
 locals {
