@@ -1,7 +1,7 @@
 -------------------
 # Argo CD
-Please see details in clicking this link ---> https://github.com/gsd-gsd/gsd-gsd/issues/1
-
+Please see details ---> https://github.com/gsd-gsd/gsd-gsd/issues/1
+----
 ------
 # terraform and terragrunt
 Terragrunt is a flexible orchestration tool that allows Infrastructure as Code to scale.
