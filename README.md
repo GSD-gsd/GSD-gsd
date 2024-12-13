@@ -27,47 +27,31 @@ Prepare environment/site level variables
 Fill in environment/site level variables in env.hcl and site.hcl respectively.
 
 Sample
-environments/daily/env.hcl
+terragrunt/1-dev/env.hcl
 
 locals {
-  env_name        = "Daily"
+  env_name        = "1-dev"
   subscription_id = "00000000-0000-0000-0000-000000000000"
   client_id       = "00000000-0000-0000-0000-000000000000"
   tenant_id       = "00000000-0000-0000-0000-000000000000"
 }
-environments/daily/us/site.hcl
+terragrunt/1-dev/us/site.hcl
 
 locals {
   site_name                              = "US"
-  location                               = "East US 2"
-  resource_group_name                    = "terraform-test"
-  deployment_storage_resource_group_name = "deployment"
-  deployment_storage_account_name        = "deploymentstate"
+  location                               = "West US 2"
+  resource_group_name                    = "gsd-rg-1"
+  deployment_storage_resource_group_name = "gsddeployment"
+  deployment_storage_account_name        = "gsddeploymentstate"
 }
 Code structure
 The code in this repo uses the following folder hierarchy:
 
 
-├── environments
-│   ├── <environment>
-│   │   ├── env.hcl
-│   │   └── <site>
-│   │       ├── site.hcl
-│   │       ├── <resource>
-│   │       │   └── terragrunt.hcl
-├── modules
-│   ├── <resource>
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   └── variables.tf
-├── scripts
-│   ├── deploy.sh
-│   └── destroy.sh
-└── terragrunt.hcl
 
 where:
 
-Environment: Each environment represents an Azure subscription, like daily, staging, production etc. Environment level variables are defined in env.hcl.
+Environment: Each environment represents an Azure subscription, like 1-dev, 2-qa, 3-prod etc. Environment level variables are defined in env.hcl.
 Site: Typically, site is a region within one particular subscription, there is also some exceptions, like 2 sites are both in the same region but for different use cases. Site level variables are defined in site.hcl.
 Resource: Resource is a single or a collection of Azure resources, like resource group/AKS cluster etc.
 Environments vs Modules
@@ -84,26 +68,28 @@ DRY Terraform code and immutable infrastructure
 DRY provider and remote state configuration
 Run Terraform commands on multiple modules at once in a proper dependencies order
 Auto-init and auto-retry
+
 Deployment
 Deploy
 Infrastructure deployment:
-    -e (Required) environment name (daily, staging, production, etc)
+    -e (Required) environment name (1-dev, 2-qa, 3-prod, etc)
     -s (Required) site name (us, eu, etc)
     -c (Optional) component name (app, networking, resource-group, etc), omit this to deploy all components
     -p (Optional) plan only, do not deploy
 Sample
 
-bash ./scripts/deploy.sh -e daily -s us -c resource-group
+bash ./scripts/deploy.sh -e 1-dev -s us -c resource-group
 Make sure you have set required environment variables properly.
 
 Destroy
 Infrastructure destroy:
-    -e (Required) environment name (daily, staging, production, etc)
+    -e (Required) environment name (1-dev, 2-qa, 3-prod, etc)
     -s (Required) site name (us, eu, etc)
     -c (Optional) component name (app, networking, resource-group, etc), omit this to deploy all components
 Sample
 
-bash ./scripts/destroy.sh -e daily -s us -c resource-group
+bash ./scripts/destroy.sh -e 1-dev -s us -c resource-group
+
 Make sure you have set required environment variables properly.
 
 -----
